@@ -2,6 +2,7 @@
 
 namespace Galantcev\Components\Cache;
 
+use Galantcev\Components\Cache\Provider\ICache;
 use Galantcev\Func\Instance;
 
 /**
@@ -10,7 +11,7 @@ use Galantcev\Func\Instance;
  * Class SmartCache
  * @package Galantcev\Components\Cache
  */
-class SmartCache
+abstract class SmartCache
 {
     use Instance;
 
@@ -55,7 +56,7 @@ class SmartCache
     const TTL_1MONTH = 2592000;
 
     /**
-     * @var \CPHPCache
+     * @var ICache
      */
     private $cache;
 
@@ -83,7 +84,7 @@ class SmartCache
      */
     public function __construct($opt = [])
     {
-        $this->cache = new \CPHPCache();
+        $this->cache = new $this->getProvider();
         $this->options = new SmartOptions();
 
         if (!empty($opt))
@@ -174,13 +175,13 @@ class SmartCache
      */
     public function get()
     {
-        $this->hasResult = $this->cache->InitCache(
+        $this->hasResult = $this->cache->init(
             $this->options->getExpire(),
             $this->options->getKey(),
             $this->options->getPath()
         );
 
-        if ($_GET['clear_cache'] == 'y' || $_GET['CLEAR_CACHE'] == 'Y') {
+        if (!$this->cache->isEnabled()) {
             $this->hasResult = false;
             $this->clear();
         }
@@ -200,10 +201,7 @@ class SmartCache
         if (!$this->isInited)
             $this->get();
 
-        $this->cache->StartDataCache();
-        $this->cache->EndDataCache([
-            'Result' => $data
-        ]);
+        $this->cache->set($data);
 
         return $this;
     }
@@ -217,7 +215,7 @@ class SmartCache
         if (!$this->isInited)
             $this->get();
 
-        return $this->cache->GetVars()['Result'];
+        return $this->cache->get();
     }
 
     /**
@@ -244,7 +242,7 @@ class SmartCache
      */
     public function clear()
     {
-        $this->cache->Clean($this->options->getKey(), $this->options->getPath());
+        $this->cache->clear($this->options->getKey(), $this->options->getPath());
 
         return $this;
     }
@@ -255,7 +253,7 @@ class SmartCache
      */
     public function clearAll()
     {
-        $this->cache->CleanDir($this->options->getPath());
+        $this->cache->clearAll($this->options->getPath());
 
         return $this;
     }
@@ -270,7 +268,7 @@ class SmartCache
      */
     public static function init($group, $key, $expire, $scatter = 0)
     {
-        return (new self())
+        return (new static())
             ->setGroup($group)
             ->setKey($key)
             ->setExpire($expire)
@@ -309,4 +307,10 @@ class SmartCache
 
         return $this;
     }
+
+    /**
+     * Возвращает провайдер кеша - нужно реализовать в наследуемом классе
+     * @return ICache
+     */
+    public abstract function getProvider();
 }
