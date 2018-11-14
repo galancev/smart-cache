@@ -84,7 +84,9 @@ abstract class SmartCache
      */
     public function __construct($opt = [])
     {
-        $this->cache = new $this->getProvider();
+        $class = $this->getProvider();
+
+        $this->cache = new $class();
         $this->options = new SmartOptions();
 
         if (!empty($opt))
@@ -310,7 +312,7 @@ abstract class SmartCache
 
     /**
      * Возвращает провайдер кеша - нужно реализовать в наследуемом классе
-     * @return ICache
+     * @return ICache|string
      */
     protected abstract function getProvider();
 }
