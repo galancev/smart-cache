@@ -312,5 +312,5 @@ abstract class SmartCache
      * Возвращает провайдер кеша - нужно реализовать в наследуемом классе
      * @return ICache
      */
-    public abstract function getProvider();
+    protected abstract function getProvider();
 }
