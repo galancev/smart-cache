@@ -53,7 +53,7 @@ $data = (new SmartCache())
 
 namespace Components\Cache;
 
-use Func\Instance;
+use Galantcev\Func\Instance;
 
 /**
  * Новая кешилка через инстансы

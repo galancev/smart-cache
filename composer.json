@@ -10,8 +10,15 @@
       "email": "galandets@gmail.com"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/galancev/instance"
+    }
+  ],
   "require": {
-    "php": ">=5.4.0"
+    "php": ">=5.4.0",
+    "galancev/instance": "dev-master"
   },
   "autoload": {
     "psr-4": {
