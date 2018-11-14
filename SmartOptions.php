@@ -1,6 +1,6 @@
 <?php
 
-namespace Components\Cache;
+namespace Galantcev\Components\Cache;
 
 /**
  * Настройки SmartCache
