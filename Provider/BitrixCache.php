@@ -53,7 +53,7 @@ class BitrixCache implements ICache
      */
     public function get()
     {
-        $this->cache->GetVars()['Result'];
+        return $this->cache->GetVars()['Result'];
     }
 
     /**
@@ -83,6 +83,9 @@ class BitrixCache implements ICache
      */
     public function isEnabled()
     {
-        return !(strtolower($_GET['clear_cache']) === 'y');
+        return
+            !(strtolower($_GET['clear_cache']) === 'y') ||
+            !(strtolower($_SESSION['SESS_CLEAR_CACHE']) === 'y') ||
+            !(strtolower($_SESSION['SESS_CLEAR_CACHE']) === 'y');
     }
 }
