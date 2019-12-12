@@ -79,6 +79,12 @@ abstract class SmartCache
     protected $isInited = false;
 
     /**
+     * Заблокирован ли этот кеш от сбросов
+     * @var bool
+     */
+    protected $isCacheLocked = false;
+
+    /**
      * SmartCache constructor.
      * @param array $opt Параметры кеша
      */
@@ -183,7 +189,10 @@ abstract class SmartCache
             $this->options->getPath()
         );
 
-        if (!$this->cache->isEnabled()) {
+        if (
+            !$this->cache->isEnabled() &&
+            !$this->isLocked()
+        ) {
             $this->hasResult = false;
             $this->clear();
         }
@@ -308,6 +317,26 @@ abstract class SmartCache
         $this->setKey(join('_', $vars));
 
         return $this;
+    }
+
+    /**
+     * Блокирует этот инстанс кеша от сброса
+     * @return $this
+     */
+    public function lock()
+    {
+        $this->isCacheLocked = true;
+
+        return $this;
+    }
+
+    /**
+     * Возвращает, заблокирован ли данный инстанс кеша от сброса
+     * @return bool
+     */
+    protected function isLocked()
+    {
+        return $this->isCacheLocked;
     }
 
     /**
