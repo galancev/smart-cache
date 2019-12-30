@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "56f5ed8d9a5528342a4b3a2623797662",
+    "packages": [
+        {
+            "name": "galancev/instance",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/galancev/instance.git",
+                "reference": "66039c60255ff8ac8bb4568de5c2cf08ad265007"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/galancev/instance/zipball/66039c60255ff8ac8bb4568de5c2cf08ad265007",
+                "reference": "66039c60255ff8ac8bb4568de5c2cf08ad265007",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EG\\Func\\": ""
+                }
+            },
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Evgeniy Galantsev",
+                    "email": "galandets@gmail.com"
+                }
+            ],
+            "description": "Instance trait",
+            "support": {
+                "source": "https://github.com/galancev/instance/tree/v2.0",
+                "issues": "https://github.com/galancev/instance/issues"
+            },
+            "time": "2019-12-30T18:29:26+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4.0"
+    },
+    "platform-dev": []
+}
