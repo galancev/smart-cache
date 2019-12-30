@@ -1,15 +1,15 @@
 <?php
 
-namespace Galantcev\Components\Cache;
+namespace EG\Components\Cache;
 
-use Galantcev\Components\Cache\Provider\ICache;
-use Galantcev\Func\Instance;
+use EG\Components\Cache\Provider\ICache;
+use EG\Func\Instance;
 
 /**
  * Новая кешилка через инстансы
  * Можно вкладывать друг в друга сколько угодно раз :)
  * Class SmartCache
- * @package Galantcev\Components\Cache
+ * @package EG\Components\Cache
  */
 abstract class SmartCache
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Galantcev\Components\Cache\Provider;
+namespace EG\Components\Cache\Provider;
 
 /**
  * Interface ICache
- * @package Galantcev\Components\Cache\Provider
+ * @package EG\Components\Cache\Provider
  */
 interface ICache
 {
