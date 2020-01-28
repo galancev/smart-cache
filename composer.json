@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Galantcev\\Components\\Cache\\": ""
+      "EG\\Components\\Cache\\": ""
     }
   }
 }
